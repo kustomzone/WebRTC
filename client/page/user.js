@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
+import { send, postJSON } from '@src/request'
+
 import "@styles/user.scss"
 import '../barrager/dist/css/barrager.css'
 
@@ -28,10 +30,12 @@ class User extends Component {
 			userInfo: {},
             logined: false,
             playState: 'pause',
-            muted: false
+            muted: false,
+            roomInfo: {}
 		}
 
 		this.getUserInfo = this.getUserInfo.bind(this)
+		this.getRoomInfo = this.getRoomInfo.bind(this)
 		this.logOut = this.logOut.bind(this)
 		this.sendBarrage = this.sendBarrage.bind(this)
 
@@ -52,6 +56,15 @@ class User extends Component {
         }
     }
 
+    getRoomInfo(serverId = this.serverId) {
+        const url = `/room/${serverId}`
+        send(url).then((data) => {
+            this.setState({
+                roomInfo: data
+            })
+        })
+    }
+
     sendBarrage() {
     	const data = {
     		type: 'msg',
@@ -62,7 +75,7 @@ class User extends Component {
 
     onReceiveData(data) {
     	const $barrager = $(this.barrager)
-    	const item={
+    	const item = {
 		   info: data.msg, //文字
 		   close:true, //显示关闭按钮
 		   speed: 5, //延迟,单位秒,默认8
@@ -103,6 +116,7 @@ class User extends Component {
 		this.conn.on('data', this.onReceiveData.bind(this))
 
 		this.getUserInfo()
+		this.getRoomInfo(serverId)
 	}
 
 	componentDidMount() {

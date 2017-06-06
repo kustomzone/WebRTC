@@ -30,3 +30,45 @@ ul {
 		overflow: hidden;
 	}
 }
+
+.video-control {
+    position: absolute;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.3);
+    bottom: 0;
+    width: 100%;
+    span {
+    	display: inline-block;
+	    line-height: 30px;
+	    box-sizing: border-box;
+	    height: 30px;
+	    margin-left: 4px;
+	    margin-top: 2px;
+	    &:hover {
+	    	cursor: pointer;
+	    }
+    	img {
+    		height: 24px;
+    		width: 24px;
+    		line-height: 30px;
+    	}
+        &.full-screen {
+            float: right;
+            margin-right: 8px;
+            margin-left: 10px;
+        }
+        &.volume-control {
+            float: right;
+            margin-right: 10px;
+            img {
+                margin-right: 8px;
+                display: inline-block;
+                vertical-align: middle;
+            }
+            input {
+                display: inline-block;
+                vertical-align: text-top;
+            }
+        }
+    }
+}
