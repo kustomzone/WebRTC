@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>webRTC 直播</title>
+    <% if (env === "production") { %>
+        <link rel="stylesheet" href="/home/index.css">
+    <% } %>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="/home/bundle.js"></script>
+    <% if (env !== "production" && reload === true) { %>
+        <script src="/reload/reload.js"></script>
+    <% } %>
+</body>
+</html>

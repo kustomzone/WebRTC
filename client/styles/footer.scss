@@ -1,0 +1,14 @@
+@import './common.scss';
+
+.footer {
+	position: fixed;
+    height: 80px;
+    width: 100%;
+    text-align: center;
+    top: calc(100% - 80px);
+    background-color: #f8f8f8;
+    span.right {
+    	line-height: 80px;
+    	color: $userColor;
+    }
+}

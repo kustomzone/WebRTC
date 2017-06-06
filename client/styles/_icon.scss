@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'block-icon-diy';
+    src: url('../resources/fonts/icomoon.eot');
+    src: url('../resources/fonts/icomoon.eot?aeyun2#iefix') format('embedded-opentype'), url('../resources/fonts/icomoon.ttf?aeyun2') format('truetype'), url('fonts/icomoon.woff?aeyun2') format('woff'), url('../resources/fonts/icomoon.svg?aeyun2#icomoon') format('svg');
+}
+
+.icon-user:before {
+    font: 14px 'block-icon-diy';
+    content: "\e971";
+}
+
+.icon-cross:before {
+    font: 14px 'block-icon-diy';
+    content: "\ea0f";
+}
+
+.icon-pencil:before {
+	font: 14px 'block-icon-diy';
+ 	content: "\e905";
+}

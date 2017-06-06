@@ -1,4 +1,6 @@
 module.exports = function (app) {
-    app.use('/', require('./page1'));
-    app.use('/page2', require('./page2'));
+    app.use('/', require('./home'))
+    app.use('/home', require('./home'))
+    app.use('/user', require('./user'))
+    app.use('/anchor', require('./anchor'))
 };

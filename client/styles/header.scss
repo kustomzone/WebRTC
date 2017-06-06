@@ -1,0 +1,166 @@
+@import './common.scss';
+
+@import './_icon.scss';
+
+.home-container {
+	height: 100%;
+	position: absolute;
+}
+
+.mask {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 8888;
+	.panel {
+		width: 400px;
+		padding: 40px;
+		padding-top: 20px;
+		box-sizing: border-box;
+		background-color: $white;
+		top: 50%;
+		transform: translateY(-50%);
+		position: relative;
+		margin: 0 auto;
+		text-align: center;
+		img.logo {
+			width: 60px;
+			height: 60px;
+			margin: 10px 130px;
+		}
+		span.panel-title {
+			color: $black;
+			font-size: 20px;
+			display: inline-block;
+			margin-bottom: 20px;
+		}
+		button.submit {
+			width: 320px;
+			line-height: 40px;
+			background-color: #d00000;
+			color: $white;
+			border: none;
+			outline: none;
+			margin-bottom: 20px;
+			&:hover {
+				cursor: pointer;
+				background-color: #ff4d00;
+			}
+		}
+		span.switch {
+			display: inline-block;
+			float: right;
+			color: $black;
+			&:hover {
+				color: #d00000;
+				cursor: pointer;
+			}
+		}
+	}
+	span.close {
+		color: $userColor;
+		display: inline-block;
+		float: right;
+		&:hover {
+			cursor: pointer;
+		}
+		span.icon-cross::before {
+			color: $userColor;
+		}
+	}
+	.form {
+		width: 320px;
+		margin-bottom: 20px;
+		// input不支持伪元素
+		input {
+			position: relative;
+			width: 100%;
+			border: none;
+			display: block;
+			border-bottom: 1px solid #d00000;
+			outline: none;
+			line-height: 24px;
+			&:not(:last-child) {
+				margin-bottom: 20px;
+			}
+			&:focus {
+				border-color: #d00000;
+				color: #d00000;
+			}
+		}
+	}
+}
+
+.header {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	position: fixed;
+	background-color: $backgroundColor;
+}
+
+.header-wrap {
+	width: 1200px;
+	margin:0 calc((100% - 1200px) / 2);
+	height: 50px;
+	img {
+		height: 40px;
+		margin: 5px;
+		display: inline-block;
+		margin-right: 20px;
+	}
+	.title {
+		font-size: 30px;
+		display: inline-block;
+		vertical-align: top;
+		line-height: 40px;
+		margin: 5px;
+	}
+	.my-room {
+		line-height: 30px;
+	    height: 30px;
+	    display: inline-block;
+	    vertical-align: top;
+	    margin-top: 10px;
+	    margin-left: 500px;
+	    text-decoration: none;
+	    background-color: #ff6600;
+	    color: $white;
+	    padding: 0 20px;
+	    border-radius: 5px;
+	    &:hover {
+			background-color: #bf0000;
+	    }
+	}
+	.user-area {
+		span.icon-user {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		span.nick-name {
+			font-size: 12px;
+		}
+		float: right;
+		display: inline-block;
+		color: $userColor;
+		line-height: 20px;
+		height: 20px;
+		margin: 15px 0;
+		.fl {
+			vertical-align: top;
+		}
+		button {
+			color: $userColor;
+			font-size: 12px;
+			outline: none;
+			background-color: transparent;
+			border: none;
+			line-height: 20px;
+			&:hover {
+				color: #ff630e;
+				cursor: pointer;
+			}
+		}
+	}
+}
