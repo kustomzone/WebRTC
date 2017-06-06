@@ -37,11 +37,7 @@ class Header extends Component {
 				userInfo: JSON.parse(sessionStorage.getItem('user')),
 				maskShow: false
 			})
-			if (location.pathname.includes('anchor')) {
-				this.props.startLive()
-			} else {
-				this.props.getUserInfo()
-			}
+			this.props.getUserInfo()
 		}).catch((err) => { console.log(err) })
 	}
 
@@ -54,11 +50,7 @@ class Header extends Component {
 					userInfo: JSON.parse(sessionStorage.getItem('user')),
 					maskShow: false
 				})
-				if (location.pathname.includes('anchor')) {
-					this.props.startLive()
-				} else {
-					this.props.getUserInfo()
-				}
+				this.props.getUserInfo()
 			} else {
 				console.log('密码错误!')
 			}

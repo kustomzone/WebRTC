@@ -187,7 +187,7 @@ class User extends Component {
 	}
 
 	render() {
-		const { roomInfo, playState, muted } = this.state
+		const { roomInfo, playState, muted, userInfo } = this.state
 		const nickname = this.state.userInfo && this.state.userInfo.nickname
 		return (
 			<div className="user-container">
@@ -207,7 +207,7 @@ class User extends Component {
 						>
 							你的浏览器不支持 <code>video</code> 标签
 						</video>
-						{roomInfo && roomInfo.living ? <div className="video-control">
+						{roomInfo && userInfo && roomInfo.living ? <div className="video-control">
 	                        <span className="play-control" onClick={this.playHandler}>
 	                            <img src={playState === 'play' ? pauseUrl : playUrl} />
 	                        </span>

@@ -27,7 +27,8 @@ class Anchor extends Component {
             logined: false,
             roomInfo: {},
             playState: 'pause',
-            muted: false
+            muted: false,
+            living: false
         }
 
         this.getUserInfo = this.getUserInfo.bind(this)
@@ -40,6 +41,8 @@ class Anchor extends Component {
         this.fullHandler = this.fullHandler.bind(this)
         this.mutedHandler = this.mutedHandler.bind(this)
         this.volumeHandler = this.volumeHandler.bind(this)
+
+        this.liveHandler = this.liveHandler.bind(this)
     }
 
     logOut() {
@@ -76,6 +79,23 @@ class Anchor extends Component {
         })
     }
 
+    liveHandler() {
+        if (this.state.living) {
+            this.state.peer.destroy()
+            this.video.pause()
+            this.video.src = ''
+            window.stream.getTracks()[0].stop()
+            this.setState({
+                living: false
+            })
+        } else {
+            this.startLive()
+            this.setState({
+                living: true
+            })
+        }
+    }
+
     componentWillMount() {
         this.serverId = location.search.replace('?', '')
         if (!this.serverId) {
@@ -98,7 +118,8 @@ class Anchor extends Component {
                 userInfo: JSON.parse(sessionStorage.getItem('user')),
                 logined: true,
                 playState: 'play',
-                muted: false
+                muted: false,
+                living: false
             })
         } else {
             console.log("请先登录")
@@ -186,7 +207,7 @@ class Anchor extends Component {
     }
 
     componentDidMount() {
-        if (this.state.logined) {
+        if (this.state.logined && this.state.living) {
             this.startLive()
         }
         window.addEventListener("unload", () => {
@@ -196,6 +217,7 @@ class Anchor extends Component {
                 living: false
             }).then((data) => {
                 console.log(data)
+                this.state.peer.destroy()
             }).catch((err) => { console.log(err) })
         })
     }
@@ -249,13 +271,14 @@ class Anchor extends Component {
     }
 
     render() {
-        const { roomInfo, playState, muted } = this.state
+        const { roomInfo, playState, muted, userInfo } = this.state
         return ( <div className = "anchor-container" >
             <Header
                 userInfo={this.state.userInfo}
                 startLive={this.startLive}
                 logOut={this.logOut}
                 ref={(target) => { this.header = target }}
+                living={this.state.living}
             />
             <div className = "anchor-content" >
                 <VideoHeader
@@ -265,6 +288,7 @@ class Anchor extends Component {
                     userInfo={this.state.userInfo}
                     roomInfo={this.state.roomInfo}
                     getRoomInfo={this.getRoomInfo}
+                    liveHandler={this.liveHandler}
                 />
                 <div className="video-wrap">
                     <video
@@ -275,7 +299,7 @@ class Anchor extends Component {
                     >
                         你的浏览器不支持 <code>video</code> 标签
                     </video>
-                    {roomInfo && roomInfo.living ? <div className="video-control">
+                    {roomInfo && userInfo && roomInfo.living ? <div className="video-control">
                         <span className="play-control" onClick={this.playHandler}>
                             <img src={playState === 'play' ? pauseUrl : playUrl} />
                         </span>

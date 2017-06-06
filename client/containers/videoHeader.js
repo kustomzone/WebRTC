@@ -115,6 +115,7 @@ class VideoHeader extends Component {
 				    </form>
 					<button className="upload">点击上传直播间背景图片</button>
 				</div> : null }
+				{userInfo && location.pathname.includes('anchor') ? <button className="live-control" onClick={this.props.liveHandler} >{this.props.living ? '停止直播' : '开始直播'}</button> : null}
 				{this.props.numbers ? <div className="audience">当前观众: {this.props.numbers}</div> : null}
 			</div>
 		)

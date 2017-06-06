@@ -193,3 +193,20 @@ video#video {
 	}
 }
 
+ button.live-control {
+ 	display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
+    line-height: 36px;
+    margin-left: 240px;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    background-color: burlywood;
+    color: white;
+    &:hover {
+    	background-color: aquamarine;
+    	cursor: pointer;
+    }
+ }
+
