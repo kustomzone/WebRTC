@@ -18,6 +18,6 @@ WebRTC P2P live System
     * `npm run production` to emit outputs and run the express for production.
     * `npm run build` if you care about what is hold in memory for development...
     
-## 致谢
-项目开发脚手架使用https://github.com/kenanpengyou的项目框架
+## Thanks
+based on the framework of https://github.com/kenanpengyou to build the whole project
 
