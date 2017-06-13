@@ -85,6 +85,16 @@ class Anchor extends Component {
             this.video.pause()
             this.video.src = ''
             window.stream.getTracks()[0].stop()
+            window.stream.getAudioTracks()[0].stop()
+            window.stream.getVideoTracks()[0].stop()
+            postJSON('/room/add', {
+                nickname: this.state.userInfo.nickname,
+                serverId: this.serverId,
+                living: false
+            }).then((data) => {
+                console.log(data)
+                this.state.peer.destroy()
+            }).catch((err) => { console.log(err) })
             this.setState({
                 living: false
             })
@@ -210,6 +220,17 @@ class Anchor extends Component {
         if (this.state.logined && this.state.living) {
             this.startLive()
         }
+        window.onbeforeunload = function (e) {
+            e = e || window.event;
+
+            // For IE and Firefox prior to version 4
+            if (e) {
+                e.returnValue = 'Sure?';
+            }
+
+            // For Safari
+            return 'Sure?';
+        };
         window.addEventListener("unload", () => {
             postJSON('/room/add', {
                 nickname: this.state.userInfo.nickname,
@@ -279,6 +300,7 @@ class Anchor extends Component {
                 logOut={this.logOut}
                 ref={(target) => { this.header = target }}
                 living={this.state.living}
+                getUserInfo={this.getUserInfo}
             />
             <div className = "anchor-content" >
                 <VideoHeader
